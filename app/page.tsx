@@ -213,7 +213,6 @@ function triggerSecretImage() {
       type="file"
       accept="image/*"
       className="hidden"
-      disabled={!objectName.trim()}
       onChange={handleUpload}
     />
   </label>
