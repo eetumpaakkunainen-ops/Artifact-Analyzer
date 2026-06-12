@@ -79,6 +79,7 @@ function pick<T>(array: T[]): T {
 
 export default function ArtifactAnalyzer() {
   const [image, setImage] = useState<string | null>(null);
+  const [objectName, setObjectName] = useState("");
   const [loading, setLoading] = useState(false);
   const [generated, setGenerated] = useState(false);
   const [secretImage, setSecretImage] = useState<string | null>(null);
@@ -193,6 +194,15 @@ function triggerSecretImage() {
               <div className="mt-8 flex flex-col items-center gap-4">
   {/* Camera Button */}
   <label className="flex items-center justify-center bg-blue-500 hover:bg-cyan-500 transition-all duration-300 text-white w-20 h-20 rounded-full cursor-pointer shadow-2xl hover:scale-110">
+  <div className="w-full max-w-sm mb-6">
+  <input
+    type="text"
+    placeholder="Enter object designation..."
+    value={objectName}
+    onChange={(e) => setObjectName(e.target.value)}
+    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-center text-white placeholder:text-neutral-500 focus:outline-none focus:border-red-700"
+  />
+</div>
     <span className="text-3xl">📷</span>
 
     <input
@@ -212,6 +222,7 @@ function triggerSecretImage() {
       type="file"
       accept="image/*"
       className="hidden"
+      disabled={!objectName.trim()}
       onChange={handleUpload}
     />
   </label>
